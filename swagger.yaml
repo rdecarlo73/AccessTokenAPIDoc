@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: IAconexGetAccessTokenRestPS
+  description: Provides automated access to Access Tokens to facilitate simple use by developers who are using the Aconex API
+  license:
+    name: MIT
+    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+host: osb.becpsn.com
+basePath: /IAconexGetAccessToken/ProxyService/IAconexGetAccessTokenRestPS/
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+- application/xml
+paths:
+  /:
+    get:
+      description: 'Gets an Access token provided '
+      summary: GetAccessToken
+      operationId: /
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: ProjectNumber
+        in: query
+        required: false
+        type: string
+        description: 'Bechtel Job Number'
+      - name: DocumentSystem
+        in: query
+        required: false
+        type: string
+        description: 'Document System Code (e.g. ACX)'
+      - name: ClientApplication
+        in: query
+        required: false
+        type: string
+        description: 'Client App Code (e.g. DSC)'
+      - name: ClientId
+        in: query
+        required: false
+        type: string
+        description: 'OAuth2 Client Identity'
+      - name: ClientSecret
+        in: query
+        required: false
+        type: string
+        description: 'Access Code'
+      responses:
+        200:
+          description: 'GetAccessToken_response'
+          schema:
+            type: object
+            properties:
+              AccessToken:
+                type: string
+                description: OAuth Barer Access Token.
+              RefreshToken:
+                type: string
+                description: OAuth Barer Refresh Token.
+              DMSBaseURL:
+                type: string
+                description: Document Management System Base URL.
+              DMSAppKey:
+                type: string
+                description: Document Management System Application Key.
+          examples: {
+                       "AccessToken": "",
+                       "RefreshToken": "",
+                       "DMSBaseURL": "",
+                       "DMSAppKey": ""
+                    }
+        400:
+          description: ''
+          schema: {}
+      x-unitTests: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
